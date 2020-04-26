@@ -1,0 +1,55 @@
+<head>
+ <style>
+  /* 本ページ */
+  .book_title,.book_opinion,.actions{
+    margin-bottom: 10px;
+  }
+  .show,.back{
+      color:#666;
+      display:inline;
+    }
+  .show:hover,.back:hover{
+    background-color:black;
+  }
+  .link{
+    display:flex;
+  }
+ </style>
+</head>
+
+<body>
+  <main>
+      <div class="container main-container">
+        <p id="notice"></p>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <h1>Editing Book</h1>
+            <!-- <div class='col-md-3 col-md-offset-3'>
+            </div> -->
+            <%= form_for(@book) do |f| %>
+              <div class="field">
+                <%= f.label :title %><br />
+                <%= f.text_field :title, autofocus: true,autocomplete:"off", class:"col-xs-12 book_title",id:"book_title" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :opinion %><br />
+                <%= f.text_area :opinion, autofocus: true,class:"col-xs-12 book_opinion",id:"book_opinion" %>
+              </div>       
+
+              <div class="actions row">
+                <%= f.submit "Update Book",class:"btn btn-primary col-xs-12" ,data: { disable_with: "Update Book" } %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="link">
+            <%=link_to "show",book_path(@book.id),class:"show" %>&ensp;|&ensp;<%=link_to "back",books_path, class:"back" %>
+          </div>
+
+          <div class="col-md-3">
+          </div>
+      </div>
+    </main>
+  </body>
