@@ -1,0 +1,53 @@
+<head>
+  <style>
+  /* flash_create */
+    .flash_create,.flash_update{
+      margin:10px 0;
+      font-size: 13px;
+      line-height: 18px;
+    }
+  /* flash_alert_cretate */
+    .flash_alert_create{
+      color:#FD1716;
+    }
+    .flash_alert ul{
+      list-style-type: disc;
+      font-size: 13px;
+      line-height: 18px;
+      margin-left: 33px;
+    }
+  /* flash_update */
+
+
+  </style>
+</head>
+<body>
+  <% flash.each do |message_type, message| %>
+  
+    <% if flash[:create] %>
+      <div class="flash_create">
+        <%= message %>
+        <p>You have creatad book successfully.</p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert_create] %>
+      <div class="flash_alert">
+        <%= message %>
+        <h3><%= pluralize(@book.errors.count, "error") %> errors prohibited this obj from being saved:</h3>
+        <ul>
+          <li>Title can't be</li>
+          <li>Body can't be blank</li>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if flash[:update] %>
+      <div class="flash_update">
+        <%= message %>
+        <p>You have updatad user successfully.</p>
+      </div>
+    <% end %>
+  <% end %>
+</body>
+

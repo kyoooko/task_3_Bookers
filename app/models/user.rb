@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {minimum: 2, maximum: 20}
   validates :email, uniqueness: true
 
+  validates :introduction, length: {maximum: 50}
+
   
   def email_required?
     false

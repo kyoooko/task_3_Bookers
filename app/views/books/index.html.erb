@@ -1,14 +1,23 @@
 <head>
   <style>
-    /* 本ページ */
-      .book_title,.book_opinion{
-    margin-bottom: 10px;
+  /* 本ページ */
+  .book_title,.book_opinion{
+  margin-bottom: 10px;
+  }
+  .books_show:visited {
+  color: #666;
+  }
+  .books_show{
+  color:#666;
+  }
+  .books_show:hover{
+  color: #337ab7;
+  background-color:#000;
   }
   </style>
 </head>
 
 <body>
-  <main>
     <div class="container main-container">
       <p id="notice"></p>
 
@@ -38,6 +47,7 @@
 
           <h2>New book</h2>
           <%= form_for(@book) do |f| %>
+
             <div class="field">
               <%= f.label :title %><br />
               <%= f.text_field :title, autofocus: true, class:"col-xs-12 book_title",id:"book_title" %>
@@ -73,11 +83,11 @@
                 <tr>
                   <td>
                     <%= link_to user_path(@user.id) do %>
-                      <%= attachment_image_tag @book.user, :profile_image, size: "50x50", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+                      <%= attachment_image_tag @book.user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
                     <% end %>
                   </td>
                   <td>
-                    <%= link_to book_path(book.id) do %><%= book.title %><% end %>
+                    <%= link_to book_path(book.id),class:"books_show" do %><%= book.title %><% end %>
                   </td>
                   <td><%= book.opinion %></td>
                 </tr>
@@ -88,6 +98,4 @@
         </div>
       </div>
     </div>
-  </main>
-
 </body>

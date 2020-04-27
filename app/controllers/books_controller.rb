@@ -1,17 +1,24 @@
 class BooksController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
-    @books=Book.all
-    @book=Book.new
     @user = User.find_by(id: current_user.id)
+    @book=Book.new
+    @books=Book.all
   end
 
   def create
   @book=Book.new(book_params)
   @book.user_id = current_user.id
     if @book.save
-      redirect_to  book_path((@book.id))
+      flash[:create]= ""
+      redirect_to  book_path(@book.id)
     else
+      @user = User.find_by(id: current_user.id)
+      @book=Book.new
+      @books=Book.all
+      flash.now[:alert_create]=  ""
       render :index
     end
   end
@@ -19,13 +26,13 @@ class BooksController < ApplicationController
 
   def show
     @book=Book.find(params[:id])
-    @user = User.find_by(id: current_user.id)
+    @user =@book.user
 
+    @create_book=Book.new
   end
 
   def edit
     @book=Book.find(params[:id])    
-
   end
 
   def update

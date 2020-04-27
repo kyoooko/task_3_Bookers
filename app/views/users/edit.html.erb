@@ -8,13 +8,14 @@
 </head>
 
 <body>
-  <main>
     <div class="container main-container">
       <p id="notice"></p>
       <h2>User info</h2>
 
       <%= form_for(@user) do |f| %>
-        <div class="field">
+          <%= render 'layouts/error_messages', model: f.object %>
+
+          <div class="field">
             <%= f.label :name %><br />
             <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"name",id:"user_name" %>
           </div>    
@@ -32,6 +33,4 @@
          <%= f.submit "Update User",data: { disable_with: "Sign up" } %>
 
       <% end %>
-  </main>
 </body>
-</html>
