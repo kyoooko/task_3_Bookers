@@ -1,38 +1,50 @@
 <head>
   <style>
-  /* flash_create */
-    .flash_create,.flash_update{
+  /* create,user_update,book_update */
+    .create,.user_update,.book_update{
       margin:10px 0;
       font-size: 13px;
       line-height: 18px;
     }
-  /* flash_alert_cretate */
-    .flash_alert_create{
+  /* alert_cretate */
+    .alert_create{
       color:#FD1716;
     }
-    .flash_alert ul{
+    .alert_create ul{
       list-style-type: disc;
       font-size: 13px;
       line-height: 18px;
       margin-left: 33px;
     }
-  /* flash_update */
-
-
+    /* divaseのflashメッセージ */
+    .flash_alert {
+      color:red;
+    }
+    .flash_notice {
+      color: green;      
+    }
   </style>
 </head>
+
 <body>
   <% flash.each do |message_type, message| %>
-  
+
+    <%# divaseのflashメッセージ %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "flash flash_#{key}") %>
+    <% end %>
+
+
+    <%# ログイン中 %>
     <% if flash[:create] %>
-      <div class="flash_create">
+      <div class="create">
         <%= message %>
         <p>You have creatad book successfully.</p>
       </div>
     <% end %>
 
     <% if flash[:alert_create] %>
-      <div class="flash_alert">
+      <div class="alert_create">
         <%= message %>
         <h3><%= pluralize(@book.errors.count, "error") %> errors prohibited this obj from being saved:</h3>
         <ul>
@@ -42,12 +54,21 @@
       </div>
     <% end %>
 
-    <% if flash[:update] %>
-      <div class="flash_update">
+    <% if flash[:user_update] %>
+      <div class="user_update">
         <%= message %>
         <p>You have updatad user successfully.</p>
       </div>
     <% end %>
+
+
+    <% if flash[:book_update] %>
+      <div class="book_update">
+        <%= message %>
+        <p>You have updated book successfully.</p>
+      </div>
+    <% end %>
+
   <% end %>
 </body>
 

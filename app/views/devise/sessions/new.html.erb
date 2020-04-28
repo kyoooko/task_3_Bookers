@@ -23,17 +23,17 @@
 
       <div class="field">
         <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"name",id:"user_name" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"name",id:"name" %>
       </div>
 
       <div class="field">
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"password", id:"user_password" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"password", id:"password" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
         <div class="field">
-          <%= f.check_box :remember_me,id:"user_remember_me" %>
+          <%= f.check_box :remember_me,id:"remember_me" %>
           <%= f.label :remember_me %>
         </div>
       <% end %>

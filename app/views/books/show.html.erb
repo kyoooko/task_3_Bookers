@@ -4,10 +4,10 @@
   .book_title,.book_opinion{
   margin-bottom: 10px;
   }
-  .books_show:visited{
+  .books_show:visited,.user_name:visited{
   color:#666;
   }
-  .books_show:hover{
+  .books_show:hover,.user_name:hover{
   color: #337ab7;
   background-color:#000;
   }
@@ -25,25 +25,25 @@
         <!-- 左側 -->
         <div class="col-xs-3">
           <h2>User info</h2>
-          <%= attachment_image_tag @user, :profile_image, size: "100x100",format: 'jpeg', class: "profile-img", fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @book.user, :profile_image, size: "100x100",format: 'jpeg', class: "profile-img", fallback: "no_image.jpg" %>
 
           <table class="table">
             <tbody>
               <tr></tr> 
               <tr>
                 <th>name</th>
-                <th><%= @user.name %></th>
+                <th><%= @book.user.name %></th>
               </tr>
               <tr>
                 <th>introduction</th>
-                <th><%= @user.introduction %></th>
+                <th><%= @book.user.introduction %></th>
               </tr>
             </tbody>
           </table>
 
           <div class="row">
-            <% if @user.id == current_user.id %>
-              <%= link_to "",edit_user_path(@user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+            <% if @book.user.id == current_user.id %>
+              <%= link_to "",edit_user_path(@book.user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
             <% else %>     
                <%= link_to "",user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
             <% end %>
@@ -74,11 +74,12 @@
             <tbody>
               <tr>
                 <td>
-                  <%= link_to user_path(@user.id) do %>
-                    <%= attachment_image_tag @book.user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-                  <% end %>
+                  <%= link_to user_path(@book.user.id), class:"user_name" do %>
+                      <%= attachment_image_tag @book.user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %><br>
+                    <%= @book.user.name %>
+                  <% end %>                
                 </td>
-                
+
                 <td>
                  <%= link_to book_path(@book.id),class:"books_show" do %><%= @book.title %><% end %>
                 </td>
@@ -92,7 +93,7 @@
                     <%= link_to "Edit",edit_book_path(@book.id),class:"btn-sm btn-success" %>
                   </td>
                   <td>
-                    <%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn-sm btn-danger" %>
+                    <%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn-sm btn-danger",data:{confirm:"本当に消しますか？"} %>
                   </td>
                 <% end %>
 

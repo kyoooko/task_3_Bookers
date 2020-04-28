@@ -4,16 +4,6 @@
   .book_title,.book_opinion{
   margin-bottom: 10px;
   }
-  .books_show:visited {
-  color: #666;
-  }
-  .books_show{
-  color:#666;
-  }
-  .books_show:hover{
-  color: #337ab7;
-  background-color:#000;
-  }
   </style>
 </head>
 
@@ -66,36 +56,8 @@
 
 
         <%# 右側 %>
-        <div class="col-xs-9">
-          <h2>Books</h2>
-          
-          <table class="table table-hover table-inverse">
-            <thead>
-              <tr> 
-                <th></th>
-                <th>Title</th>
-                <th>Opinion</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @books.each do |book| %>
-                <tr>
-                  <td>
-                    <%= link_to user_path(@user.id) do %>
-                      <%= attachment_image_tag @book.user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to book_path(book.id),class:"books_show" do %><%= book.title %><% end %>
-                  </td>
-                  <td><%= book.opinion %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
-        </div>
+        <%= render 'layouts/books', books: @books %>
+        
       </div>
     </div>
 </body>

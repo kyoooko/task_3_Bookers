@@ -26,6 +26,7 @@
             <!-- <div class='col-md-3 col-md-offset-3'>
             </div> -->
             <%= form_for(@book) do |f| %>
+              <%= render 'layouts/error_messages', model: f.object %>
 
               <div class="field">
                 <%= f.label :title %><br />
@@ -41,10 +42,9 @@
                 <%= f.submit "Update Book",class:"btn btn-primary col-xs-12" ,data: { disable_with: "Update Book" } %>
               </div>
             <% end %>
-          </div>
-
-          <div class="link">
-            <%=link_to "show",book_path(@book.id),class:"show" %>&ensp;|&ensp;<%=link_to "back",books_path, class:"back" %>
+            <div class="link">
+              <%=link_to "show",book_path(@book.id),class:"show" %>&ensp;|&ensp;<%=link_to "back",books_path, class:"back" %>
+            </div>
           </div>
 
           <div class="col-md-3">

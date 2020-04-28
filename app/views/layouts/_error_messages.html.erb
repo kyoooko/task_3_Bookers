@@ -1,20 +1,18 @@
 <head>
   <style>
     
-    .error-prohibited,.alert-warning{
+    .error-prohibited,.alert{
       color:#FD1716;
     }
-    .alert-warning ul{
+    .alert ul{
       list-style-type: disc;
       font-size: 13px;
       line-height: 18px;
       margin-left: 33px;
     }
-
-    .alert-warning {
-    background-color: #fcf8e3; */
-    border:none;
-}
+    .error-prohibited{
+      font-size: 24px;
+    }
   </style>
 </head>
 
@@ -24,7 +22,7 @@
       <h2 class="error-prohibited">
         <%= pluralize(model.errors.count, "error") %> prohibited this user from being saved:
       </h2>
-      <div class="alert alert-warning">
+      <div class="alert">
         <ul>
           <% model.errors.full_messages.each do |message| %>
             <li><%= message %></li>
