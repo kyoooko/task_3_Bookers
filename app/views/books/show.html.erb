@@ -1,7 +1,7 @@
 <head>
   <style>
   /* 本ページ */
-  .book_title,.book_opinion{
+  .book_title,.book_body{
   margin-bottom: 10px;
   }
   .books_show:visited,.user_name:visited{
@@ -57,8 +57,8 @@
             </div>
 
             <div class="field">
-              <%= f.label :opinion %><br />
-              <%= f.text_area :opinion, autofocus: true,class:"col-xs-12 book_opinion",id:"book_opinion" %>
+              <%= f.label :body,"Opinion" %><br />
+              <%= f.text_area :body, autofocus: true,class:"col-xs-12 book_body",id:"book_body" %>
            </div>       
 
             <div class="actions row">
@@ -74,7 +74,8 @@
             <tbody>
               <tr>
                 <td>
-                  <%= link_to user_path(@book.user.id), class:"user_name" do %>
+
+                  <%= link_to user_path(@book.user.id), class:"user_name" do %>              
                       <%= attachment_image_tag @book.user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %><br>
                     <%= @book.user.name %>
                   <% end %>                
@@ -85,7 +86,7 @@
                 </td>
                 
                 <td>
-                  <%= @book.opinion %>
+                  <%= @book.body %>
                 </td>
 
                 <% if @book.user == current_user %>
