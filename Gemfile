@@ -70,3 +70,9 @@ gem 'devise'
 # 追記（refile)
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+#追記（My SQL）
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
