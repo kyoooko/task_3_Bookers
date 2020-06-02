@@ -39,15 +39,27 @@ class User < ApplicationRecord
       self.relationships.find_or_create_by(follow_id: other_user.id)#フォロー済みならRelation を返し、フォローしてなければフォロー関係を保存(create = new + save)する
     end
   end
-
   def unfollow(other_user)
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship #relationship が存在すれば(=フォロー済みなら) destroy 
   end
-
   def following?(other_user)
     self.followings.include?(other_user)
   end
 
+  # 検索機能
+  def self.search(search,word)
+    if search == "forward_match"
+      User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      User.where("name =?","#{word}")     
+    elsif search == "partial_match"
+      User.where("name LIKE?","%#{word}%")
+    else
+      User.all
+    end
+  end
 
 end
