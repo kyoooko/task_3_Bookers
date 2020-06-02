@@ -20,7 +20,7 @@
 
     <div class="row">
 
-      <!-- 左側 -->
+      <!-- 左側 上-->
         <div class="col-xs-3">
           <h2>User info</h2>
           <%= attachment_image_tag @user, :profile_image, size: "100x100",format: 'jpeg', class: "profile-img", fallback: "no_image.jpg" %>
@@ -36,13 +36,23 @@
                 <th>introduction</th>
                 <th><%= @user.introduction %></th>
               </tr>
+              <%# フォロー機能 %>
+              <tr>
+                <th>follows</th>
+                <th><%= link_to "/users/#{@user.id}/follows",class:"books_show" do %><%= @user.followings.count %><% end %></th>
+              </tr>
+              <tr>
+                <th>followers</th>
+                <th><%= link_to "/users/#{@user.id}/followers",class:"books_show" do %><%= @user.followers.count %><% end %></th>
+              </tr>
             </tbody>
           </table>
-
+          <%# ユーザー編集ボタン %>
           <div class="row">
             <%= link_to "",edit_user_path(@user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
           </div>
 
+          <!-- 左側 下-->
           <h2>New book</h2>
           <%= form_for(@book) do |f| %>
             <div class="field row ">
@@ -82,6 +92,9 @@
                 <%= attachment_image_tag user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
                 </td>
                 <td><%=user.name %></td>
+                <td>フォロー数：<%= user.followings.count %></td>
+                <td>フォロワー数：<%= user.followers.count %></td>
+                <td><%= render 'relationships/follow_button', user: user %></td>
                 <td><%=link_to"Show", user_path(user.id),class:"users_show" %></td>
               </tr>
              <% end %>
