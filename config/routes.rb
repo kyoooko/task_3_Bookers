@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   get 'users/:id/follows' => "users#follows"
   get 'users/:id/followers' => "users#followers"
+  # 検索機能
+  get 'search' => 'searches#search'
 end
