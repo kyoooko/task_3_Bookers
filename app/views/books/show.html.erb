@@ -27,7 +27,7 @@
   .commnet-destroy-btn{
     background-color: pink;
     border-color: pink;
-    font-size: 8px;
+    font-size: 10px;
     padding: 4px 8px;
   }
   </style>
@@ -53,6 +53,15 @@
               <tr>
                 <th>introduction</th>
                 <th><%= @book.user.introduction %></th>
+              </tr>
+              <%# フォロー機能 %>
+              <tr>
+                <th>follows</th>
+                <th><%= link_to "/users/#{@book.user.id}/follows",class:"books_show" do %><%= @book.user.followings.count %><% end %></th>
+              </tr>
+              <tr>
+                <th>followers</th>
+                <th><%= link_to "/users/#{@book.user.id}/followers",class:"books_show" do %><%= @book.user.followers.count %><% end %></th>
               </tr>
             </tbody>
           </table>

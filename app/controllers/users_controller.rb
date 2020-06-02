@@ -39,9 +39,11 @@ class UsersController < ApplicationController
 
   # フォロー機能
   def follows
+    @user = User.find(params[:id])
   end
 
   def followers
+    @user = User.find(params[:id])
   end
 
 

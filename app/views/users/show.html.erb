@@ -4,10 +4,6 @@
   .book_title,.book_body{
     margin-bottom: 10px;
   }
-  /* フォロー機能 */
-  .follow-btn{
-    margin-bottom:10px;
-  }
   </style>
 </head>
 
@@ -35,17 +31,17 @@
               <%# フォロー機能 %>
               <tr>
                 <th>follows</th>
-                <th>1</th>
+                <th><%= link_to "/users/#{@user.id}/follows",class:"books_show" do %><%= @user.followings.count %><% end %></th>
               </tr>
               <tr>
                 <th>followers</th>
-                <th>2</th>
+                <th><%= link_to "/users/#{@user.id}/followers",class:"books_show" do %><%= @user.followers.count %><% end %></th>
               </tr>
             </tbody>
           </table>
           <%# フォローボタン %>
           <div class="row">
-              <%= link_to "フォローする",edit_user_path(@user.id), class:"col-xs-12 btn btn-success follow-btn" %>
+             <%= render 'relationships/follow_button', user: @user %>
           </div>  
           <%# ユーザー編集ボタン %>
           <div class="row">

@@ -11,6 +11,11 @@
   color: #337ab7;
   background-color:#000;
   }
+  /* フォロー */
+  .follow-btn{
+    padding: 4px 0;
+    font-size: 10px;
+  }
   </style>
 </head>
 
@@ -39,11 +44,11 @@
               <%# フォロー機能 %>
               <tr>
                 <th>follows</th>
-                <th>1</th>
+                <th><%= link_to "/users/#{@user.id}/follows",class:"books_show" do %><%= @user.followings.count %><% end %></th>
               </tr>
               <tr>
                 <th>followers</th>
-                <th>2</th>
+                <th><%= link_to "/users/#{@user.id}/followers",class:"books_show" do %><%= @user.followers.count %><% end %></th>
               </tr>
             </tbody>
           </table>
@@ -92,9 +97,9 @@
                 <%= attachment_image_tag user, :profile_image, size: "40x40", format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
                 </td>
                 <td><%=user.name %></td>
-                <td>フォロー数：1</td>
-                <td>フォロワー数：2</td>
-                <td><%=link_to"フォローする", user_path(user.id),class:"" %></td>
+                <td>フォロー数：<%= user.followings.count %></td>
+                <td>フォロワー数：<%= user.followers.count %></td>
+                <td><%= render 'relationships/follow_button', user: user %></td>
                 <td><%=link_to"Show", user_path(user.id),class:"users_show" %></td>
               </tr>
              <% end %>
