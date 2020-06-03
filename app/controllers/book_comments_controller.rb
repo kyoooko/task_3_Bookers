@@ -5,18 +5,26 @@ class BookCommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.book_id = @book.id
     if @comment.save
-    redirect_to book_path(@book)
+      # 非同期通信のため変更
+    # redirect_to book_path(@book)
+    render :index
     else
       # @create_book=Book.new
       # @book_comment = BookComment.new
-      redirect_to book_path(@book)
+      # 非同期通信のため変更
+      # redirect_to book_path(@book)
+      render :index
     end
   end
-
   
   def destroy
-    BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
-    redirect_to book_path(params[:book_id])
+    @book = Book.find(params[:book_id])
+    # 非同期通信のため変更
+    # redirect_to book_path(params[:book_id])
+    if BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
+      # binding.pry
+      render :index 
+    end
   end
 
   private
