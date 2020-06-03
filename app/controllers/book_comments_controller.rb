@@ -19,10 +19,9 @@ class BookCommentsController < ApplicationController
   
   def destroy
     @book = Book.find(params[:book_id])
-    @comment=BookComment.find_by(id: params[:id], book_id: params[:book_id])
     # 非同期通信のため変更
     # redirect_to book_path(params[:book_id])
-    if @comment.destroy
+    if BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
       # binding.pry
       render :index 
     end
