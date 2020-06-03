@@ -32,7 +32,6 @@ class BooksController < ApplicationController
     end
   end
 
-
   def show
     @book=Book.find(params[:id])
     @create_book=Book.new
