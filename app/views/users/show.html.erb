@@ -8,6 +8,13 @@
   .follow-btn{
     width:100%;
   }
+  /* 住所 */
+  .map{
+    margin-top:30px;
+  }
+  .adress{
+     margin-top:30px;
+  }
   </style>
 </head>
 
@@ -56,8 +63,6 @@
             <% end %>
           </div>  
 
-
-
           <!-- 左側 下 -->
           <h2>New book</h2>
           <%= form_for(@book) do |f| %>
@@ -79,8 +84,18 @@
       
         <!-- 右側 -->
         <%= render 'books/books', books: @books %>
-
       </div>    
+      
+      <!-- 下（MAP) -->
+      <% if @user == current_user %>
+        <div class="row map">
+          <div class="col-xs-12">
+              <h2>Your Map</h2>
+              <p class="adress">住所： 〒<%= @user.postal_code %>&emsp;<% @user.prefecture_code %>&ensp;<%= @user.city %>&ensp;<%= @user.street%></p>
+          </div>
+        </div>
+      <% end %>
+
     </div>
 </body>
 

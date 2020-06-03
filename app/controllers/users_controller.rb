@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book=Book.new
     @books=@user.books
+    # binding.pry
   end
 
   def index
@@ -49,6 +50,6 @@ class UsersController < ApplicationController
 
   private 
   def user_params
-      params.require(:user).permit(:name, :profile_image,:introduction)
+      params.require(:user).permit(:name, :profile_image,:introduction,:postal_code, :prefecture_code, :city, :street)
   end
 end

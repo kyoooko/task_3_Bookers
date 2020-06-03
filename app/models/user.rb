@@ -23,6 +23,7 @@ class User < ApplicationRecord
     false
   end
 
+  # ここから応用課題
   # コメント機能
   has_many :book_comments, dependent: :destroy
   # いいね機能
@@ -60,6 +61,22 @@ class User < ApplicationRecord
     else
       User.all
     end
+  end
+
+  # 住所検索（JpPrefecture gem)
+  validates :postal_code , presence: true, length: { is: 7 }, numericality: { only_integer: true }
+  validates :city, presence: true
+  validates :street, presence: true
+  
+  include JpPrefecture
+  jp_prefecture :prefecture_code  
+  # postal_codeからprefecture_nameに変換するメソッドを用意
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+  # prefecture_name2都道府県名を代入したらprefecture_codeに反映させるメソッド
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
 end
