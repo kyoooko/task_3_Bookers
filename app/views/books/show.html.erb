@@ -132,9 +132,9 @@
                   </td>
                 <% end %>
                 <%# いいね %>
-                <span class="book_<%= @book.id %>">
-                  <%= render 'books/book_for_show', book: @book %>
-                </span>
+                <td class="book_<%= @book.id %>">
+                  <%= render 'books/book', book: @book %>
+                </td>
               </tr>
             </tbody>
           </table>
