@@ -79,4 +79,16 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
+  # GooleMap導入のため緯度経度取得
+  def address
+    "%s %s"%([self.postal_code,self.city,self.street])
+  end
+  # 上記と同じ（下記はGH掲載）
+  # def address
+  #   [postal_code,city,street].compact.join(', ')
+  # end
+  # geocoded_by self.address
+  # after_validation :geocode, if: :address_changed?
+  
+
 end

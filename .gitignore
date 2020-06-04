@@ -30,5 +30,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# My SQL追記
+# 追記(My SQL／GoogleMap)
 /.env
