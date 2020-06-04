@@ -1,6 +1,6 @@
 <head>
   <style>
-        /* 本ページ */
+    /* 本ページ */
     .field,.actions{
       margin-bottom: 10px;
     }
@@ -13,6 +13,7 @@
     #error_explanation{
       color:red;
     }
+
   </style>
 </head>
 
@@ -31,6 +32,28 @@
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"email",id:"email" %>
+        </div>
+
+        <%# #住所検索（JpPrefecture gem) %>
+        <div class="field">
+          <%= f.label :postal_code %><br />
+           <%= f.text_field :postal_code, autofocus: true, placeholder: '', class: "postal_code", id: "address_zipcode" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :prefecture_code %><br>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, class: "address" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :city %><br>
+              <%= f.text_field :city, autofocus: true, placeholder: '', class: "address", id:"address_city" %>
+
+        </div>
+
+        <div class="field">
+           <%= f.label :street %><br>
+          <%= f.text_field :street, autofocus: true, placeholder: '', class: "address_street" %>
         </div>
       
         <div class="field">

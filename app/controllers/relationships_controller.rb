@@ -7,12 +7,10 @@ class RelationshipsController < ApplicationController
       flash[:success] = 'ユーザーをフォローしました'
       redirect_back(fallback_location: root_path)
       # redirect_to @user
-      # redirect_back(fallback_location:)
     else
       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
       redirect_back(fallback_location: root_path)
       # redirect_to @user
-      # redirect_back(fallback_location:)
     end
   end
 
