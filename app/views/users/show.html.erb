@@ -106,40 +106,7 @@
   </div>
 
   <%# Google マップ(JS)  %>
-  <script>
-  /*関数の外で定義(codeAddressでも使うため)*/
-    let map
-    let geocoder
-    // 最初の表示で次の処理をする
-    function initMap(){
-      // geocoderを初期化。住所を緯度経度に変換してくれる
-      geocoder = new google.maps.Geocoder()
-      // ジオコードオブジェクトを作成し、geocode()methodでGeocoderにリクエストを送信。addressとresults、statusはgeocodeが装備しているもの。.attrで住所を取り出しgeocodeメソッドの結果（緯度経度）をresultsに入れてる
-      geocoder.geocode( { 'address': $('#map').attr('class')}, function(results, status) {
-        // ステータスがOKなら
-        if (status == 'OK') {
-       // 中央を指定
-          map.setCenter(results[0].geometry.location);
-       // GoogleMap上の指定位置にマーカが立つ
-          var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-          });
-        } else {
-          alert('[Your Map] 該当する結果が見つかりませんでした：' + status);
-        }
-      });
-      // 下記ないと表示できない
-      map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.7828, lng: -73.9653},
-      zoom: 8
-      });
-    }
-    // 住所訂正する場合は下記必要
-    // function codeAddress(){
-    //   let inputAddress = document.getElementById('address').value;
-    // }
-  </script>
+  <script sec="javascripts/address_map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
   <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7wALtCD2-jLMnFfdOUaxxfvOtA_wKqs8&callback=initMap" async defer></script> %>
 </body>
