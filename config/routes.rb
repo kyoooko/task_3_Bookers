@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   root 'home#top'
   get 'home/about'
   devise_for :users, module: :users
@@ -13,4 +14,6 @@ Rails.application.routes.draw do
   get 'users/:id/followers' => "users#followers"
   # 検索機能
   get 'search' => 'searches#search'
+  # チャット
+  resources :chats, only:[:show, :create]
 end
