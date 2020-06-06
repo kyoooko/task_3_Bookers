@@ -84,4 +84,6 @@ gem 'pry-byebug'
 gem 'jp_prefecture'
 # 追記（GooleMap導入のため緯度経度取得）
 gem "geocoder"
+# 追記（メール自動配信）
+gem 'whenever', require: false
 
