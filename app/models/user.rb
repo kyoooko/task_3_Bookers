@@ -83,6 +83,7 @@ class User < ApplicationRecord
   def address
     "%s %s"%([self.postal_code,self.city,self.street])
   end
+  
   # 上記と同じ（下記はGH掲載）
   # def address
   #   [postal_code,city,street].compact.join(', ')
@@ -94,6 +95,4 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
-  
-
 end
