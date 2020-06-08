@@ -1,16 +1,10 @@
 class BooksController < ApplicationController
-
+  # deviseのメソッド:ログインしてなかったらログイン画面に返す（URL直打ちも不可）
   before_action :authenticate_user!
-
-  before_action :ensure_correct_user, {only: [:edit, :update]}
-  def ensure_correct_user
-    @book=Book.find(params[:id])
-    if current_user.id !=  @book.user_id
-     redirect_to books_path
-    end
-  end
+  # current_user以外がedit,updateできないようにする（URL直打ちも不可）
+  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :set_book, only: [:show,:edit,:update,:destroy]
   
-
   def index
     @user = User.find_by(id: current_user.id)
     @book=Book.new
@@ -33,17 +27,14 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book=Book.find(params[:id])
     @create_book=Book.new
     @book_comment = BookComment.new
   end
 
-  def edit
-    @book=Book.find(params[:id])    
+  def edit   
   end
 
   def update
-    @book=Book.find(params[:id])
     if @book.update(book_params)
       flash[:book_update]= ""
       redirect_to book_path(@book.id)
@@ -53,16 +44,23 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
   end
 
-
   private
-
   def book_params
     params.require(:book).permit(:title, :body, :user)
   end
 
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def ensure_correct_user
+    @book=Book.find(params[:id])
+    if current_user.id !=  @book.user_id
+     redirect_to books_path
+    end
+  end
 end

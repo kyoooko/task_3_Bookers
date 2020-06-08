@@ -17,7 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def create
     build_resource(sign_up_params)
-
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -25,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
-        ThanksMailer.thanks_mail(current_user).deliver_now
+        ThanksMailer.thanks_mail(current_user).deliver_now #この一文追加
         # DailyMailer.daily_mail.deliver_now
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"

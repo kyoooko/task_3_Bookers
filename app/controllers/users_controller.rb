@@ -1,17 +1,11 @@
 class UsersController < ApplicationController
-  # deviseのメソッドで、ログインしてなかったらログイン画面に返す
+  # deviseのメソッド:ログインしてなかったらログイン画面に返す（URL直打ちも不可）
   before_action :authenticate_user!
-  
-  before_action :ensure_correct_user, {only: [:edit, :update]}
-  def ensure_correct_user
-    if current_user.id !=  params[:id].to_i
-     redirect_to user_path(current_user.id)
-    end
-  end
-
+  # current_user以外がedit,updateできないようにする（URL直打ちも不可）
+  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:show,:edit, :update,:follows,:followers]
   
   def show
-    @user = User.find(params[:id])
     @book=Book.new
     @books=@user.books
     # binding.pry
@@ -24,11 +18,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: current_user.id)
+    # ensure_correct_userがあるのでset_userで問題なく、下記不要
+    # @user = User.find_by(id: current_user.id)
   end
 
   def update
-    @user = User.find_by(id: current_user.id)
+    # ensure_correct_userがあるのでset_userで問題なく、下記不要
+    # @user = User.find_by(id: current_user.id)
      if @user.update(user_params)
       flash[:user_update]= ""
       redirect_to user_path(@user.id)
@@ -36,19 +32,24 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
-
   # フォロー機能
   def follows
-    @user = User.find(params[:id])
   end
   def followers
-    @user = User.find(params[:id])
   end
-
 
   private 
   def user_params
       params.require(:user).permit(:name, :profile_image,:introduction,:postal_code, :prefecture_code, :city, :street)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def ensure_correct_user
+    if current_user.id !=  params[:id].to_i
+     redirect_to user_path(current_user.id)
+    end
   end
 end

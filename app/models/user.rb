@@ -10,15 +10,12 @@ class User < ApplicationRecord
   attachment :profile_image 
   has_many :books, dependent: :destroy
 
-  def email_required?
-    false
-  end
-  def email_changed?
-    false
-  end
-  def will_save_change_to_email?
-    false
-  end
+  # def email_required?
+  #   false
+  # end
+  # def will_save_change_to_email?
+  #   false
+  # end
 
   # コメント機能
   has_many :book_comments, dependent: :destroy
@@ -82,7 +79,7 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
-  # GooleMap導入のため緯度経度取得
+  # GooleMap導入のため緯度経度取得(本来不要)
   def address
     "%s %s"%([self.postal_code,self.city,self.street])
   end
@@ -91,6 +88,7 @@ class User < ApplicationRecord
   # def address
   #   [postal_code,city,street].compact.join(', ')
   # end
+  # 下記不要
   # geocoded_by self.address
   # after_validation :geocode, if: :address_changed?
 
