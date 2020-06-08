@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
+  # deviseのメソッドで、ログインしてなかったらログイン画面に返す
   before_action :authenticate_user!
-
+  
   before_action :ensure_correct_user, {only: [:edit, :update]}
   def ensure_correct_user
     if current_user.id !=  params[:id].to_i
@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   def follows
     @user = User.find(params[:id])
   end
-
   def followers
     @user = User.find(params[:id])
   end

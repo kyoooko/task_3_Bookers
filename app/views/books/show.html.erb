@@ -28,6 +28,10 @@
     font-size: 10px;
     padding: 4px 8px;
   }
+  /* フォロー機能 */
+  .follow-btn{
+    width:100%;
+  }
   </style>
 </head>
 
@@ -36,46 +40,11 @@
       <p id="notice"></p>
 
       <div class="row">
-        <!-- 左側 -->
+        <!-- 左側 上-->
         <div class="col-xs-3">
           <h2>User info</h2>
-          <%= attachment_image_tag @book.user, :profile_image, size: "100x100",format: 'jpeg', class: "profile-img", fallback: "no_image.jpg" %>
-
-          <table class="table">
-            <tbody>
-              <tr></tr> 
-              <tr>
-                <th>name</th>
-                <th><%= @book.user.name %></th>
-              </tr>
-              <tr>
-                <th>introduction</th>
-                <th><%= @book.user.introduction %></th>
-              </tr>
-              <%# フォロー機能 %>
-              <tr>
-                <th>follows</th>
-                <th><%= link_to "/users/#{@book.user.id}/follows",class:"books_show" do %><%= @book.user.followings.count %><% end %></th>
-              </tr>
-              <tr>
-                <th>followers</th>
-                <th><%= link_to "/users/#{@book.user.id}/followers",class:"books_show" do %><%= @book.user.followers.count %><% end %></th>
-              </tr>
-            </tbody>
-          </table>
-          <%# フォローボタン %>
-          <div class="row">
-             <%= render 'relationships/follow_button', user: @book.user %>
-          </div>  
-          <%# ユーザー編集ボタン %>
-          <div class="row">
-            <% if @book.user.id == current_user.id %>
-              <%= link_to "",edit_user_path(@book.user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-            <% else %>     
-               <%= link_to "",user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-            <% end %>
-          </div>  
-
+          <%= render 'users/info', user: @book.user %>
+        <!-- 左側 下-->
           <h2>New book</h2>
           <%= form_for(@create_book) do |f| %>
            <div class="field row">

@@ -3,38 +3,40 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   validates :name, presence: true, length: {minimum: 2, maximum: 20}
   validates :email, presence: true
   validates :introduction, length: {maximum: 50}
-  
+
   attachment :profile_image 
   has_many :books, dependent: :destroy
 
   def email_required?
     false
   end
-
   def email_changed?
     false
   end
-
   def will_save_change_to_email?
     false
   end
 
-  # ここから応用課題
   # コメント機能
   has_many :book_comments, dependent: :destroy
   # いいね機能
   has_many :favorites, dependent: :destroy
+
   # フォロー機能
+  # ========自分がフォローしているユーザーとの関連======
+  # ①中間モデルRelationship
   has_many :relationships
+  # ②M対Nの相手NのUserモデル
   has_many :followings, through: :relationships, source: :follow
+  # ========自分がフォローされるユーザーとの関連========
+  # ①中間モデルRelationship
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  # ②M対Nの相手NのUserモデル
   has_many :followers, through: :reverse_of_relationships, source: :user
 
-   # フォロー機能
   def follow(other_user)
     unless self == other_user # 自分以外の人であれば下記実行
       self.relationships.find_or_create_by(follow_id: other_user.id)#フォロー済みならRelation を返し、フォローしてなければフォロー関係を保存(create = new + save)する
@@ -44,6 +46,7 @@ class User < ApplicationRecord
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship #relationship が存在すれば(=フォロー済みなら) destroy 
   end
+  # 自分はother_userをフォローしてるか？
   def following?(other_user)
     self.followings.include?(other_user)
   end
