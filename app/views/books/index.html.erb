@@ -15,35 +15,7 @@
         <!-- 左側 上-->
         <div class="col-xs-3">
           <h2>User info</h2>
-          <%= attachment_image_tag @user, :profile_image, size: "100x100",format: 'jpeg', class: "profile-img", fallback: "no_image.jpg" %>
-
-          <table class="table">
-            <tbody>
-              <tr></tr> 
-              <tr>
-                <th>name</th>
-                <th><%= @user.name %></th>
-              </tr>
-              <tr>
-                <th>introduction</th>
-                <th><%= @user.introduction %></th>
-              </tr>
-              <%# フォロー機能 %>
-              <tr>
-                <th>follows</th>
-                <th><%= link_to "/users/#{@user.id}/follows",class:"books_show" do %><%= @user.followings.count %><% end %></th>
-              </tr>
-              <tr>
-                <th>followers</th>
-                <th><%= link_to "/users/#{@user.id}/followers",class:"books_show" do %><%= @user.followers.count %><% end %></th>
-              </tr>
-            </tbody>
-          </table>
-
-          <%# ユーザー編集ボタン %>
-          <div class="row">
-            <%= link_to "",edit_user_path(@user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-          </div>
+          <%= render 'users/info', user: @user %>
 
           <!-- 左側 下-->
           <h2>New book</h2>
