@@ -79,7 +79,6 @@ end
 
 # 追記（デバッグ）
 gem 'pry-byebug'
-
 # 追記（住所検索）
 gem 'jp_prefecture'
 # 追記（GooleMap導入のため緯度経度取得）
