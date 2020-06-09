@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   #   ThanksMailer.thanks_mail(@user).deliver_now
   #  end
-  
+
   def create
     build_resource(sign_up_params)
     resource.save
@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
-        ThanksMailer.thanks_mail(current_user).deliver_now #この一文追加
+        ThanksMailer.thanks_mail(current_user).deliver_now # この一文追加
         # DailyMailer.daily_mail.deliver_now
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # private 
+  # private
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

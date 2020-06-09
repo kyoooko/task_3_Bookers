@@ -1,54 +1,13 @@
-<head>
- <style>
-  /* 本ページ */
-  .book_title,.book_body,.actions{
-    margin-bottom: 10px;
-  }
-  .show,.back{
-      color:#666;
-    }
-  .show:hover,.back:hover{
-    background-color:#000;
-  }
-  .link{
-    display:flex;
-  }
- </style>
-</head>
-
-<body>
-      <div class="container main-container">
-        <p id="notice"></p>
-
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <h1>Editing Book</h1>
-            <!-- <div class='col-md-3 col-md-offset-3'>
-            </div> -->
-            <%= form_for(@book) do |f| %>
-              <%= render 'layouts/error_messages', model: f.object %>
-
-              <div class="field row">
-                <%= f.label :title %><br />
-                <%= f.text_field :title, autofocus: true,autocomplete:"off", class:"col-xs-12 book_title",id:"book_title" %>
-              </div>
-
-              <div class="field row">
-                <%= f.label :body,"Opinion" %><br />
-                <%= f.text_area :body, autofocus: true,class:"col-xs-12 book_body",id:"book_body" %>
-              </div>       
-
-              <div class="actions row">
-                <%= f.submit "Update Book",class:"btn btn-primary col-xs-12" ,data: { disable_with: "Update Book" } %>
-              </div>
-            <% end %>
-            <div class="link">
-              <%=link_to "Show",book_path(@book.id),class:"show" %>&ensp;|&ensp;<%=link_to "Back",books_path, class:"back" %>
-            </div>
-
-          </div>
-
-          <div class="col-md-3">
-          </div>
+<div class="container main-container">
+  <p id="notice"></p>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Editing Book</h1>
+      <%= render 'create_book_form', book: @book %>
+      <div class="link">
+        <%=link_to "Show",book_path(@book.id),class:"show" %>&ensp;|&ensp;<%=link_to "Back",books_path, class:"back" %>
       </div>
-  </body>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

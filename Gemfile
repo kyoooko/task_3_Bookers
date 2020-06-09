@@ -71,7 +71,7 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-#追記（My SQL／環境変数）
+# 追記（My SQL／環境変数）
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
@@ -79,11 +79,11 @@ end
 
 # 追記（デバッグ）
 gem 'pry-byebug'
-
 # 追記（住所検索）
 gem 'jp_prefecture'
 # 追記（GooleMap導入のため緯度経度取得）
 gem "geocoder"
 # 追記（メール自動配信）
 gem 'whenever', require: false
-
+# 追記（静的コード解析ツール）
+gem 'rubocop-airbnb'

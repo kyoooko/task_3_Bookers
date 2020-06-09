@@ -3,18 +3,18 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   # current_user以外がedit,updateできないようにする（URL直打ちも不可）
   before_action :ensure_correct_user, only: [:edit, :update]
-  before_action :set_user, only: [:show,:edit, :update,:follows,:followers]
-  
+  before_action :set_user, only: [:show, :edit, :update, :follows, :followers]
+
   def show
-    @book=Book.new
-    @books=@user.books
+    @book = Book.new
+    @books = @user.books
     # binding.pry
   end
 
   def index
     @users = User.all
     @user = User.find_by(id: current_user.id)
-    @book=Book.new
+    @book = Book.new
   end
 
   def edit
@@ -25,31 +25,34 @@ class UsersController < ApplicationController
   def update
     # ensure_correct_userがあるのでset_userで問題なく、下記不要
     # @user = User.find_by(id: current_user.id)
-     if @user.update(user_params)
-      flash[:user_update]= ""
+    if @user.update(user_params)
+      flash[:user_update] = ""
       redirect_to user_path(@user.id)
-     else
+    else
       render :edit
-    end
+   end
   end
+
   # フォロー機能
   def follows
   end
+
   def followers
   end
 
-  private 
+  private
+
   def user_params
-      params.require(:user).permit(:name, :profile_image,:introduction,:postal_code, :prefecture_code, :city, :street)
+    params.require(:user).permit(:name, :profile_image, :introduction, :postal_code, :prefecture_code, :city, :street)
   end
-  
+
   def set_user
     @user = User.find(params[:id])
   end
 
   def ensure_correct_user
-    if current_user.id !=  params[:id].to_i
-     redirect_to user_path(current_user.id)
+    if current_user.id != params[:id].to_i
+      redirect_to user_path(current_user.id)
     end
   end
 end
