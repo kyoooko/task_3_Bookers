@@ -87,3 +87,8 @@ gem "geocoder"
 gem 'whenever', require: false
 # 追記（静的コード解析ツール）
 gem 'rubocop-airbnb'
+# 追記（Haml）
+gem "haml-rails"
+# 追記（Slim）
+gem 'slim-rails' #slimファイルを使えるようにする
+gem 'html2slim' #既存のerbファイルをslimファイルに変換出来る様にする
