@@ -10,14 +10,19 @@
 .field{
   margin-bottom: 10px;
 }
-// Google マップ（show) 
-.map-field{
+// Google マップ（show) (BEM記法）
+.map{
   margin-top:30px;
+
+  &__head{
+    color:#828791
+  }
+  &__adress{
+    margin-top:30px;
+    color:#828791;
+  }
+  &__google-map {
+    height: 600px;
+    width: 600px;
+  }
 }
-.adress{
-   margin-top:30px;
-}
-#map {
-      height: 600px;
-      width: 600px;
-    }

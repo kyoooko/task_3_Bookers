@@ -83,9 +83,9 @@ class User < ApplicationRecord
   end
 
   # GooleMap導入のため緯度経度取得(本来不要)
-  def address
-    "%s %s" % [postal_code, city, street]
-  end
+  # def address
+  #   "%s %s" % [postal_code, city, street]
+  # end
 
   # 上記と同じ（下記はGH掲載）
   # def address

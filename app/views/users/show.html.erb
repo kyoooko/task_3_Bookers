@@ -12,20 +12,19 @@
     </div>
   
     <!-- 右側 -->
-    <div class="col-xs-9 container">
+    <div class="col-xs-9">
       <%= render 'books/books', books: @books %>
     </div>
   </div>    
   
-  <!-- 下（MAP) -->
+  <!-- 下（MAP)(BEM記法） -->
   <% if @user == current_user %>
-    <div class="row map-field">
-      <div class="col-xs-12">
-          <h2>Your Map</h2>
-          <p class="adress">住所： 〒<%= @user.postal_code %>&emsp;<% @user.prefecture_code %>&ensp;<%= @user.city %>&ensp;<%= @user.street%></p>
-          <p><% @user.address %></p>
+    <div class="row">
+      <div class="col-xs-12 map">
+          <h2 class="map__head">Your Map</h2>
+          <p class="map__adress">住所： 〒<%= @user.postal_code %>&emsp;<% @user.prefecture_code %>&ensp;<%= @user.city %>&ensp;<%= @user.street%></p>
           <%# Google マップ %>
-          <div id='map' class="<%= @user.prefecture_code.to_s + @user.city + @user.street %>">
+          <div id='map' class="<%= @user.prefecture_code.to_s + @user.city + @user.street %> map__google-map">
       </div>
     </div>
   <% end %>
