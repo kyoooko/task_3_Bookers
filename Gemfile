@@ -85,4 +85,6 @@ gem 'jp_prefecture'
 gem "geocoder"
 # 追記（メール自動配信）
 gem 'whenever', require: false
+# 追記（静的コード解析ツール）
+gem 'rubocop-airbnb'
 
