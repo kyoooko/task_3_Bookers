@@ -17,11 +17,9 @@ every 1.days, at: '15:40 pm' do
   runner "DailyMailer.daily_mail.deliver_now"
 end
 
-# every 1.minutes do 
+# every 1.minutes do
 #   runner "DailyMailer.daily_mail.deliver_now"
 # end
-
-
 
 # set :output, "/path/to/my/cron_log.log"
 #

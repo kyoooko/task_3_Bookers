@@ -71,7 +71,7 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-#追記（My SQL／環境変数）
+# 追記（My SQL／環境変数）
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
@@ -87,4 +87,3 @@ gem "geocoder"
 gem 'whenever', require: false
 # 追記（静的コード解析ツール）
 gem 'rubocop-airbnb'
-
