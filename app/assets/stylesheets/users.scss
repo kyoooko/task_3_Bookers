@@ -1,16 +1,10 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "colors";
 // 右側Users一覧（_index）
 .users_show{
-  &:visited {
-    color: #666;
-    }
-  &:hover{
-  color: #337ab7;
-  background-color:#000;
-  }
+  @include click-link
 }
 // (edit)
 .field{

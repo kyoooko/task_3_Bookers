@@ -1,6 +1,7 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
 
 // 左側下(_create_book_form)
 .book_title,.book_body{
@@ -8,19 +9,13 @@
   }
 // 右側Books一覧（_books）
 .books-show,.user-name{
-  &:visited{
-    color:#666;
-    }
-  &:hover{
-    color: #337ab7;
-    background-color:#000;
-    }
+  @include click-link
  }
 //  (edit)
  .show,.back{
-  color:#666;
+  color:$text;
   &:hover{
-  background-color:#000;
+  background-color:$back-black;
   }
 }
 .link{
@@ -38,6 +33,6 @@
 }
 //  いいね（show）
 .glyphicon-heart,.glyphicon-heart-empty{
-  color:#666;
+  color:$text;
 }
 

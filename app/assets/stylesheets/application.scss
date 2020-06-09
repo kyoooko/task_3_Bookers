@@ -14,5 +14,26 @@
  *= require_tree .
  *= require_self
  */
+ @import "colors";    
  @import "bootstrap-sprockets";  
- @import "bootstrap";          
+ @import "bootstrap";   
+   
+//  appliction.html.erb
+ .bookers{
+  font-weight: bold;
+  color:$text-white;
+  }
+  main{
+    margin-top: 50px;
+  }
+  @media (max-width: 767px) {
+    .navbar-brand{
+      display:block;
+      width: 100%;
+    }
+  }
+  .search{
+    text-align:right;
+    padding-top:15px;
+    font-size:16px;
+  }
