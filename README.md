@@ -1,24 +1,66 @@
-# README
+# Bookers2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+* DMM WEBCAMPの個人学習フェーズ（1〜1.5ヶ月目）の基礎＋応用課題
+* おすすめの本共有・検索サイト
 
-* Ruby version
+## サイトURL
 
-* System dependencies
+## ターゲットユーザ
+* 本に関する情報を知りたい人、記録・共有したい人全般
 
-* Configuration
+## 主な利用シーン
+* 購入を検討しており、本の感想を知りたい時
+* 自分が読んだ本の感想を記録・共有したい時
+* 他のユーザーと本の感想を語ったり交流したい時
 
-* Database creation
+## 使用技術
 
-* Database initialization
+### フロントエンド
 
-* How to run the test suite
+* HTML & CSS
+* JavaScript / jQuery
 
-* Services (job queues, cache servers, search engines, etc.)
+### バックエンド
 
-* Deployment instructions
+* Ruby-2.5.7
+* Ruby_on_rails-5.2.4.2
 
-* ...
+### テスト
+* RSpec-3.9
+
+### 開発環境
+* vagrant2.2.4
+* virtual_box
+
+### 本番環境・デプロイ
+* 
+
+
+## 主な機能一覧
+
+### いいね機能 (応用課題3・６、Ajax非同期通信)
+### コメント機能 (応用課題３、Ajax非同期通信)
+### フォロー機能 (応用課題４)
+### チャット機能 (応用課題９、Ajax非同期通信)
+
+### 書籍・ユーザー検索機能 (応用課題５)
+* どこでも検索ができるヘッダーの検索窓
+* 完全一致、部分一致、前方一致、後方一致を選択し検索ができる
+
+### 住所検索機能 (応用課題７)
+* 新規登録時、郵便番号を入力後郵便番号に対応する住所が住所フォームに自動入力される（jpostal.jp）
+* マイページに自分の住所の地図を表示（gem jp_prefecture、Google Map API）
+* APIトークンを環境変数として扱う（gem dotenv-rails）
+
+### メール送信機能 (応用課題8・１０)
+* ユーザ登録時、Welcomeメールが届く(ActionMailer)
+* １日に１回、Thanksメールが届く(ActionMailer、whenever)
+
+### その他機能
+* 書籍投稿機能
+* Rubocop
+* BEM(一部）
+* slim/hamlで記述（一部）
+* レスポンシブ対応
